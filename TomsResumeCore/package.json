@@ -1,0 +1,38 @@
+{
+  "title": "Toms Resume Website",
+  "name": "tomsresumewebsite",
+  "version": "1.0.0",
+  "description": "A website to serve as my professional resume.",
+  "keywords": [
+    "css",
+    "sass",
+    "html",
+    "responsive",
+    "resume"
+  ],
+  "homepage": "https://tomhutson.com",
+  "license": "MIT",
+  "author": "Tom Hutson",
+  "contributors": [
+    "Tom Hutson (https://tomhutson.com/)"
+  ],
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.7.2",
+    "bootstrap": "4.3.1",
+    "jquery": "3.3.1",
+    "jquery.easing": "^1.4.1"
+  },
+  "devDependencies": {
+    "browser-sync": "2.26.3",
+    "del": "^3.0.0",
+    "gulp": "4.0.0",
+    "gulp-autoprefixer": "6.0.0",
+    "gulp-clean-css": "4.0.0",
+    "gulp-header": "2.0.7",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "1.4.0",
+    "gulp-sass": "4.0.2",
+    "gulp-uglify": "3.0.1",
+    "merge-stream": "^1.0.1"
+  }
+}
