@@ -69,6 +69,10 @@ section h3.section-subheading {
   font-weight: 700;
 }
 
+.btn > i {
+  font-weight: normal;
+}
+
 .btn-xl {
   font-size: 18px;
   padding: 20px 40px;

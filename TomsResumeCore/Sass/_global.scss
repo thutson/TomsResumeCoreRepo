@@ -60,6 +60,9 @@ section {
   @include heading-font;
   font-weight: 700;
 }
+.btn > i{
+    font-weight: normal;
+}
 
 .btn-xl {
   font-size: 18px;
