@@ -69,6 +69,10 @@ section h3.section-subheading {
   font-weight: 700;
 }
 
+.btn > i {
+  font-weight: normal;
+}
+
 .btn-xl {
   font-size: 18px;
   padding: 20px 40px;
@@ -104,7 +108,7 @@ img::-moz-selection {
 }
 
 #mainNav {
-  background-color: #212529;
+  background-color: #495057;
 }
 
 #mainNav .navbar-toggler {
@@ -160,7 +164,7 @@ img::-moz-selection {
   #mainNav.navbar-shrink {
     padding-top: 0;
     padding-bottom: 0;
-    background-color: #212529;
+    background-color: #495057;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
@@ -605,27 +609,6 @@ header.masthead .intro-text .intro-heading {
   .timeline > li.timeline-inverted > .timeline-panel {
     padding: 0 100px 20px 20px;
   }
-}
-
-.team-member {
-  margin-bottom: 50px;
-  text-align: center;
-}
-
-.team-member img {
-  width: 225px;
-  height: 225px;
-  border: 7px solid #fff;
-}
-
-.team-member h4 {
-  margin-top: 25px;
-  margin-bottom: 0;
-  text-transform: none;
-}
-
-.team-member p {
-  margin-top: 0;
 }
 
 section#contact {
