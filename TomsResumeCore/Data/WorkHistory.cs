@@ -18,6 +18,7 @@ namespace TomsResumeCore.Data
         {
             _config = config;
         }
+
         public async Task<List<JobHistory>> GetWorkHistoryAsync()
         {
             //Data is saved on a json file hosted on google drives.
@@ -26,6 +27,7 @@ namespace TomsResumeCore.Data
                 try
                 {
                     var GoogleDriveFileId = _config["WorkHistoryGoogleDriveFileId"];
+
                     if (GoogleDriveFileId == null)
                         throw new ArgumentNullException("The WorkHistoryGoogleDriveFileId param is missing from appsettings.json");
 

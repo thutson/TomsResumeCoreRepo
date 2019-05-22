@@ -26,7 +26,8 @@ namespace TomsResumeCore
 
             return jobs
                 .OrderBy(x => x.JobOrder)
-                .Select (x => new JobHistory {
+                .Select(x => new JobHistory
+                {
                     Employer = x.Employer,
                     DateRange = x.DateRange,
                     Position = x.Position,
@@ -34,7 +35,7 @@ namespace TomsResumeCore
                     JobOrder = x.JobOrder,
                     LogoUrl = x.LogoUrl,
                     BulletPoints = x.BulletPoints
-                        .OrderBy(y => y.Order).ToList()
+                       .OrderBy(y => y.Order).ToList()
                 });
         }
 
