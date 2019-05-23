@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using TomsResumeCore.DomainModels;
 using TomsResumeCore.Data;
-using TomsResumeCore.Models;
 
-namespace TomsResumeCore
+namespace TomsResumeCore.Web.API
 {
     [Route("api/[controller]")]
-    public class WorkHistoryController : Controller
+    [ApiController]
+    public class WorkHistoryController : ControllerBase
     {
-        private readonly IWorkHistory _workHistoryData;
-        public WorkHistoryController(IWorkHistory workHistoryData)
+        private readonly IWorkHistoryRepo _workHistoryRepo;
+        public WorkHistoryController(IWorkHistoryRepo workHistoryRepo)
         {
-            _workHistoryData = workHistoryData;
+            _workHistoryRepo = workHistoryRepo;
         }
 
         // GET: api/<controller>
         [HttpGet]
-        public async Task<IEnumerable<JobHistory>> GetAsync()
+        public async Task<IEnumerable<JobHeld>> GetAsync()
         {
-            var jobs = await _workHistoryData.GetWorkHistoryAsync();
+            var jobs = await _workHistoryRepo.GetWorkHistoryAsync();
 
             return jobs
                 .OrderBy(x => x.JobOrder)
-                .Select (x => new JobHistory {
+                .Select(x => new JobHeld
+                {
                     Employer = x.Employer,
                     DateRange = x.DateRange,
                     Position = x.Position,

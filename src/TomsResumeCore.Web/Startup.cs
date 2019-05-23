@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TomsResumeCore.Data;
 
-namespace TomsResumeCore
+namespace TomsResumeCore.Web
 {
     public class Startup
     {
@@ -34,7 +34,7 @@ namespace TomsResumeCore
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddTransient<IWorkHistory, WorkHistory>();
+            services.AddTransient<IWorkHistoryRepo, WorkHistoryRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

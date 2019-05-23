@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomsResumeCore", "TomsResumeCore\TomsResumeCore.csproj", "{C453E6A7-97CF-4670-A1A2-53DF169A8516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomsResumeCore.Web", "src\TomsResumeCore.Web\TomsResumeCore.Web.csproj", "{C453E6A7-97CF-4670-A1A2-53DF169A8516}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomsResumeCore.Tests", "test\TomsResumeCore.Tests\TomsResumeCore.Tests.csproj", "{DD1EFF22-1DEC-42D5-8A04-600D298B24E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C79AC816-F06D-4C24-82C9-3454A7B747DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5A4EE3AF-62E5-4A89-A359-2B1BC8E3A325}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomsResumeCore.Service", "src\TomsResumeCore.Service\TomsResumeCore.Service.csproj", "{9826992F-D984-482F-9A70-44C5A6F6703E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomsResumeCore.Data", "src\TomsResumeCore.Data\TomsResumeCore.Data.csproj", "{0822C451-813C-4160-8066-5DD89B74A623}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomsResumeCore.DomainModels", "src\TomsResumeCore.DomainModels\TomsResumeCore.DomainModels.csproj", "{559CDDAB-E9A9-4EC9-809E-0934C76EBAF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,32 @@ Global
 		{C453E6A7-97CF-4670-A1A2-53DF169A8516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C453E6A7-97CF-4670-A1A2-53DF169A8516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C453E6A7-97CF-4670-A1A2-53DF169A8516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1EFF22-1DEC-42D5-8A04-600D298B24E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1EFF22-1DEC-42D5-8A04-600D298B24E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1EFF22-1DEC-42D5-8A04-600D298B24E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1EFF22-1DEC-42D5-8A04-600D298B24E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9826992F-D984-482F-9A70-44C5A6F6703E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9826992F-D984-482F-9A70-44C5A6F6703E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9826992F-D984-482F-9A70-44C5A6F6703E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9826992F-D984-482F-9A70-44C5A6F6703E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0822C451-813C-4160-8066-5DD89B74A623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0822C451-813C-4160-8066-5DD89B74A623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0822C451-813C-4160-8066-5DD89B74A623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0822C451-813C-4160-8066-5DD89B74A623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559CDDAB-E9A9-4EC9-809E-0934C76EBAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559CDDAB-E9A9-4EC9-809E-0934C76EBAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559CDDAB-E9A9-4EC9-809E-0934C76EBAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559CDDAB-E9A9-4EC9-809E-0934C76EBAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C453E6A7-97CF-4670-A1A2-53DF169A8516} = {C79AC816-F06D-4C24-82C9-3454A7B747DB}
+		{DD1EFF22-1DEC-42D5-8A04-600D298B24E0} = {5A4EE3AF-62E5-4A89-A359-2B1BC8E3A325}
+		{9826992F-D984-482F-9A70-44C5A6F6703E} = {C79AC816-F06D-4C24-82C9-3454A7B747DB}
+		{0822C451-813C-4160-8066-5DD89B74A623} = {C79AC816-F06D-4C24-82C9-3454A7B747DB}
+		{559CDDAB-E9A9-4EC9-809E-0934C76EBAF5} = {C79AC816-F06D-4C24-82C9-3454A7B747DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {433AE2AA-55C8-49BD-82BE-88B30554695C}
