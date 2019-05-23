@@ -2,24 +2,23 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TomsResumeCore.Models;
+using TomsResumeCore.DomainModels;
+using TomsResumeCore.Data;
 
 namespace TomsResumeCore.Data
 {
-    public class WorkHistory : IWorkHistory
+    public class WorkHistoryRepo : IWorkHistoryRepo
     {
         private readonly IConfiguration _config;
         const string GoogleDriveURL = @"https://drive.google.com/uc?export=view&id=";
 
-        public WorkHistory(IConfiguration config)
+        public WorkHistoryRepo(IConfiguration config)
         {
             _config = config;
         }
-
-        public async Task<List<JobHistory>> GetWorkHistoryAsync()
+        public async Task<List<JobHeld>> GetWorkHistoryAsync()
         {
             //Data is saved on a json file hosted on google drives.
             using (HttpClient client = new HttpClient())
@@ -37,7 +36,7 @@ namespace TomsResumeCore.Data
                     response.EnsureSuccessStatusCode();
                     string responseBody = await response.Content.ReadAsStringAsync();
 
-                    return JsonConvert.DeserializeObject<List<JobHistory>>(responseBody);
+                    return JsonConvert.DeserializeObject<List<JobHeld>>(responseBody);
                 }
                 catch (HttpRequestException ex)
                 {

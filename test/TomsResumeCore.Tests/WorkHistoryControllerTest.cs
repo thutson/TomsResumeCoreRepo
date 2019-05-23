@@ -1,20 +1,18 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using TomsResumeCore;
+using TomsResumeCore.DomainModels;
 using TomsResumeCore.Data;
-using TomsResumeCore.Models;
+using TomsResumeCore.Web.API;
 using Xunit;
 
 namespace TomsResumeCore.Tests
 {
     public class WorkHistoryControllerTest
     {
-        WorkHistoryController _controller;
-        IWorkHistory _repo;
+        readonly WorkHistoryController _controller;
+        readonly IWorkHistoryRepo _repo;
 
         public WorkHistoryControllerTest()
         {
@@ -23,7 +21,7 @@ namespace TomsResumeCore.Tests
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            _repo = new WorkHistory(configuration);
+            _repo = new WorkHistoryRepo(configuration);
             _controller = new WorkHistoryController(_repo);
         }
 
@@ -32,7 +30,7 @@ namespace TomsResumeCore.Tests
         {
             var result = await _controller.GetAsync();
 
-            Assert.IsAssignableFrom<IEnumerable<JobHistory>>(result);
+            Assert.IsAssignableFrom<IEnumerable<JobHeld>>(result);
         }
     }
 }

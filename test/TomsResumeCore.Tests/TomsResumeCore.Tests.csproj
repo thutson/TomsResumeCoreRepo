@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -28,7 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TomsResumeCore\TomsResumeCore.Web.csproj" />
+    <ProjectReference Include="..\..\src\TomsResumeCore.DomainModels\TomsResumeCore.DomainModels.csproj" />
+    <ProjectReference Include="..\..\src\TomsResumeCore.Web\TomsResumeCore.Web.csproj" />
   </ItemGroup>
 
 </Project>

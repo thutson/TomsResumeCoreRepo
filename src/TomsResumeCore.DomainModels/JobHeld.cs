@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace TomsResumeCore.Models
+namespace TomsResumeCore.DomainModels
 {
-    public class JobHistory
+    public class JobHeld
     {
         public string Employer { get; set; }
         public string DateRange { get; set; }
