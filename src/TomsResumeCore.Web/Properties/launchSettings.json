@@ -21,7 +21,8 @@
     "TomsResumeCore": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "KEYVAULT_ENDPOINT": "https://tomsresumwebsitekeyvault.vault.azure.net/"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
