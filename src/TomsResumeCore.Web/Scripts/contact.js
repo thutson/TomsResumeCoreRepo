@@ -30,15 +30,20 @@
             message: "Please enter a message"
         },
         submitHandler: function (form) {
-            // some other code
-            // maybe disabling submit button
-            // then:
             event.preventDefault(); // prevent default submit behaviour
-            // get values from FORM
-            var name = $("input#name").val();
-            var email = $("input#email").val();
-            var message = $("textarea#message").val();
-            var firstName = name; // For Success/Failure Message
+            if (typeof (grecaptcha) !== 'undefined') {
+                var response = grecaptcha.getResponse();                
+                if (response.length === 0) {
+                    var captchaMessage = 'Captcha verification failed.';
+                    $('#success').html("<div class='alert alert-danger'>");
+                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                        .append("</button>");
+                    $('#success > .alert-danger').append($("<strong>").text(captchaMessage));
+                    $('#success > .alert-danger').append('</strong></div>');
+                    return;
+                }
+            }
+            var firstName = $("input#name").val(); // For Success/Failure Message
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
@@ -48,11 +53,11 @@
             $.ajax({
                 url: "./api/Contact",
                 type: "POST",
-                dataType: "json",
                 data: {
-                    name: name,
-                    email: email,
-                    message: message
+                    name: $("input#name").val(),
+                    email: $("input#email").val(),
+                    message: $("textarea#message").val(),
+                    recaptcha: $("#g-recaptcha-response").val()
                 },
                 cache: false,
                 success: function () {
@@ -73,7 +78,7 @@
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
                     $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
-                    $('#success > .alert-danger').append('</div>');
+                    $('#success > .alert-danger').append('</strong></div>');
                 },
                 complete: function () {
                     setTimeout(function () {

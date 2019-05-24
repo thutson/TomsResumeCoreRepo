@@ -13,11 +13,13 @@ namespace TomsResumeCore.Web.API
     [ApiController]
     public class ContactController : ControllerBase
     {
-        readonly IEmailService _emailService;
+        private readonly IEmailService _emailService;
+        private readonly IGoogleRecaptchaService _gCaptchaService;
 
-        public ContactController(IEmailService emailService)
+        public ContactController(IEmailService emailService, IGoogleRecaptchaService gCaptchaService)
         {
             _emailService = emailService;
+            _gCaptchaService = gCaptchaService;
         }
         // GET: api/Contact
         [HttpGet]
@@ -35,10 +37,15 @@ namespace TomsResumeCore.Web.API
 
         // POST: api/Contact
         [HttpPost]
-        public void Post([FromForm] ContactPayload payload)
+        public async Task PostAsync([FromForm] ContactPayload payload)
         {
-
-            var test = _emailService.SendContactMessage(payload.name, payload.email, payload.message);
+            if(
+                !String.IsNullOrWhiteSpace(payload.name) &&
+                !String.IsNullOrWhiteSpace(payload.email) &&
+                !String.IsNullOrWhiteSpace(payload.message) &&
+                !String.IsNullOrWhiteSpace(payload.recaptcha)
+            )
+            await _emailService.SendContactMessage(payload.name, payload.email, payload.message, payload.recaptcha);
         }
 
         // PUT: api/Contact/5
