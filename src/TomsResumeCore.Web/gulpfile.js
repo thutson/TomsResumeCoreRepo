@@ -64,7 +64,11 @@ function modules() {
         '!./node_modules/jquery/dist/core.js'
     ])
         .pipe(gulp.dest('./wwwroot/lib/jquery'));
-    return merge(bootstrap, fontAwesome, jquery, jqueryEasing);
+    // jQuery Validation
+    var jqueryValidation = gulp.src('./node_modules/jquery-validation/dist/**/*')
+        .pipe(gulp.dest('./wwwroot/lib/jquery-validation'));
+
+    return merge(bootstrap, fontAwesome, jquery, jqueryEasing, jqueryValidation);
 }
 
 // CSS task
@@ -97,8 +101,7 @@ function css() {
 function js() {
     return gulp
         .src([
-            './Scripts/*.js',
-            '!./Scripts/*.min.js'
+            './Scripts/*.js'
         ])
         .pipe(uglify())
         .pipe(header(banner, {

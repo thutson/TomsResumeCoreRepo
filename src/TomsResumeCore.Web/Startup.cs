@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TomsResumeCore.Data;
+using TomsResumeCore.DomainModels;
+using TomsResumeCore.Service;
 
 namespace TomsResumeCore.Web
 {
@@ -34,7 +36,19 @@ namespace TomsResumeCore.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.Configure<SmtpSettings>(values =>
+            {
+                values.Host = Configuration["smtp:Host"];
+                values.Port = Convert.ToInt32(Configuration["smtp:Port"]);
+                values.IsSSL = Convert.ToBoolean(Configuration["smtp:IsSSL"]);
+                values.SenderEmail = Configuration["smtp:SenderEmail"];
+                values.SenderName = Configuration["smtp:SenderName"];
+                values.Password = Configuration["GmailPassword"];
+            });
+
             services.AddTransient<IWorkHistoryRepo, WorkHistoryRepo>();
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IGoogleRecaptchaService, GoogleRecaptchaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
