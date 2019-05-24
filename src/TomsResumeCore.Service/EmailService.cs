@@ -7,5 +7,9 @@ namespace TomsResumeCore.Service
 {
     public class EmailService : IEmailService
     {
+        public async Task SendContactMessage(string name, string email, string message)
+        {
+            var test = 0;
+        }
     }
 }

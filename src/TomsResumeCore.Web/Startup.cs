@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TomsResumeCore.Data;
+using TomsResumeCore.Service;
 
 namespace TomsResumeCore.Web
 {
@@ -35,6 +36,7 @@ namespace TomsResumeCore.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IWorkHistoryRepo, WorkHistoryRepo>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

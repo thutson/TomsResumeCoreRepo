@@ -64,7 +64,7 @@
     </div>
 </section>
 <hr />
-            <!-- Experience -->
+<!-- Experience -->
 <section class="page-section" id="experience">
     <div class="container">
         <div class="row">
@@ -144,7 +144,7 @@
     </div>
 </section>
 <hr />
-            <!-- About -->
+<!-- About -->
 <section class="page-section" id="about">
     <div class="container">
         <div class="row">
@@ -166,5 +166,40 @@
                 </p>
             </div>
         </div>
+    </div>
+</section>
+<!-- Contact -->
+<section class="page-section" id="contact">
+    <div class="container">
+        <form id="contactForm" name="sentMessage" novalidate="novalidate">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Contact</h2>
+                    <h3 class="section-subheading text-muted"><i class="fas fa-2x fa-envelope-open" ></i>&nbsp; <a href="mailto:tom@tomhutson.com">tom@tomhutson.com</a> or use the form below to reach out to me.</h3>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required />
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Message" required></textarea>
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <div class="g-recaptcha" data-sitekey="6Lc3I6UUAAAAACM5glYi6-p8wY0kJKumEEozjh9a"></div>
+                <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">Send Message</button>
+            </div>
+        </form>
     </div>
 </section>

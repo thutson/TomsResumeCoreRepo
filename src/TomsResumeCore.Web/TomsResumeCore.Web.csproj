@@ -5,6 +5,14 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -21,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TomsResumeCore.Data\TomsResumeCore.Data.csproj" />
     <ProjectReference Include="..\TomsResumeCore.DomainModels\TomsResumeCore.DomainModels.csproj" />
+    <ProjectReference Include="..\TomsResumeCore.Service\TomsResumeCore.Service.csproj" />
   </ItemGroup>
 
 </Project>

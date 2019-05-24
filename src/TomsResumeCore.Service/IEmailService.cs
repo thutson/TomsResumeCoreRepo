@@ -7,5 +7,6 @@ namespace TomsResumeCore.Service
 {
     public interface IEmailService
     {
+        Task SendContactMessage(string name, string email, string message);
     }
 }
