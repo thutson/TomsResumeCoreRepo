@@ -18,20 +18,21 @@ namespace TomsResumeCore.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                //.ConfigureAppConfiguration((ctx, builder) =>
-                //{
-                //    builder.SetBasePath(Directory.GetCurrentDirectory())
-                //        .AddJsonFile("azurekeyvault.json", false, true)
-                //        .AddEnvironmentVariables();
-
-                //    var config = builder.Build();
-
-                //    builder.AddAzureKeyVault(
-                //        $"https://{config["azureKeyVault:vault"]}.vault.azure.net/",
-                //        config["azureKeyVault:clientId"],
-                //        config["azureKeyVault:clientSecret"]
-                //    );
-                //})
+                .ConfigureAppConfiguration((ctx, builder) =>
+                {
+                    var keyVaultEndpoint = GetKeyVaultEndpoint();
+                    if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                    {
+                        var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                        var keyVaultClient = new KeyVaultClient(
+                            new KeyVaultClient.AuthenticationCallback(
+                            azureServiceTokenProvider.KeyVaultTokenCallback));
+                        builder.AddAzureKeyVault(
+                            keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                    }
+                })
                 .UseStartup<Startup>();
+
+        private static string GetKeyVaultEndpoint() => Environment.GetEnvironmentVariable("KEYVAULT_ENDPOINT");
     }
 }
