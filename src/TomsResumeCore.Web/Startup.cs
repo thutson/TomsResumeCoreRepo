@@ -12,25 +12,9 @@ namespace TomsResumeCore.Web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            //Configuration = configuration;
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile("azurekeyvault.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            var config = builder.Build();
-
-            builder.AddAzureKeyVault(
-                $"https://{config["azureKeyVault:vault"]}.vault.azure.net/",
-                config["azureKeyVault:clientId"],
-                config["azureKeyVault:clientSecret"]
-            );
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
