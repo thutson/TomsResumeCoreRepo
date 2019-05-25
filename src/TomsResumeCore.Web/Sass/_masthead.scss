@@ -71,6 +71,16 @@ header.masthead {
                 margin-bottom: 15px;
                 @include heading-font;
             }
+            
+        }
+    }
+}
+@media(max-width:768px) {
+    header.masthead {
+        .intro-text {
+            .btn {
+                margin-bottom: 1em;
+            }
         }
     }
 }

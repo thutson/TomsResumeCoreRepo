@@ -12,7 +12,6 @@ namespace TomsResumeCore.Data
     public class WorkHistoryRepo : IWorkHistoryRepo
     {
         private readonly IConfiguration _config;
-        const string GoogleDriveURL = @"https://drive.google.com/uc?export=view&id=";
 
         public WorkHistoryRepo(IConfiguration config)
         {
@@ -25,10 +24,15 @@ namespace TomsResumeCore.Data
             {
                 try
                 {
-                    var GoogleDriveFileId = _config["WorkHistoryGoogleDriveFileId"];
+                    var GoogleDriveURL = _config["GoogleDrive:Url"];
+
+                    if (GoogleDriveURL == null)
+                        throw new ArgumentNullException("The GoogleDrive:Url param is missing from appsettings.json");
+
+                    var GoogleDriveFileId = _config["GoogleDrive:FileId"];
 
                     if (GoogleDriveFileId == null)
-                        throw new ArgumentNullException("The WorkHistoryGoogleDriveFileId param is missing from appsettings.json");
+                        throw new ArgumentNullException("The GoogleDrive:FileId param is missing from appsettings.json");
 
                     var Uri = new Uri(GoogleDriveURL + GoogleDriveFileId);
 

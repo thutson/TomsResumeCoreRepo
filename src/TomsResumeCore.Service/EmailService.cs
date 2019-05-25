@@ -47,7 +47,7 @@ namespace TomsResumeCore.Service
             var to = new List<string>();
             to.Add(ContactFormEmail);
             
-            await SendEmail("Contact Form Email", string.Concat("Message from '" + email + "' : ", message), to, null, null);
+            await SendEmail("Contact Form Email", string.Concat("Message from '" + name + "(" + email + ")'  : ", message), to, null, null);
         }
 
         public async Task SendEmail(string subject, string message, List<string> to, List<string> cc, List<string> bcc)

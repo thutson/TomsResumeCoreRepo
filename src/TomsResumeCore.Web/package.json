@@ -1,7 +1,10 @@
 {
   "title": "Toms Resume Website",
   "name": "tomsresumewebsite",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "scripts": {
+    "start": "gulp watch"
+  },
   "description": "A website to serve as my professional resume.",
   "keywords": [
     "css",
@@ -11,13 +14,21 @@
     "resume"
   ],
   "homepage": "https://tomhutson.com",
+  "bugs": {
+    "url": "https://github.com/thutson/TomsResumeCoreRepo/issues",
+    "email": "feedback@startbootstrap.com"
+  },
   "license": "MIT",
   "author": "Tom Hutson",
   "contributors": [
     "Tom Hutson (https://tomhutson.com/)"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thutson/TomsResumeCoreRepo.git"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.7.2",
+    "@fortawesome/fontawesome-free": "5.8.2",
     "bootstrap": "4.3.1",
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.0",
@@ -25,15 +36,15 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.5",
-    "del": "^3.0.0",
-    "gulp": "4.0.0",
-    "gulp-autoprefixer": "6.0.0",
-    "gulp-clean-css": "4.0.0",
+    "del": "4.1.1",
+    "gulp": "4.0.2",
+    "gulp-autoprefixer": "6.1.0",
+    "gulp-clean-css": "4.2.0",
     "gulp-header": "2.0.7",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "1.4.0",
     "gulp-sass": "4.0.2",
-    "gulp-uglify": "3.0.1",
+    "gulp-uglify": "3.0.2",
     "merge-stream": "^1.0.1"
   }
 }

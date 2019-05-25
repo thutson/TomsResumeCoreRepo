@@ -5,6 +5,7 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using System;
+using System.IO;
 
 namespace TomsResumeCore.Web
 {
@@ -19,18 +20,18 @@ namespace TomsResumeCore.Web
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((ctx, builder) =>
                 {
-                    var keyVaultEndpoint = GetKeyVaultEndpoint();
-                    if (!string.IsNullOrEmpty(keyVaultEndpoint))
-                    {
-                        var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                        var keyVaultClient = new KeyVaultClient(
-                            new KeyVaultClient.AuthenticationCallback(
-                                azureServiceTokenProvider.KeyVaultTokenCallback));
-                        builder.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
-                    }
+                    builder.SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("azurekeyvault.json", false, true)
+                        .AddEnvironmentVariables();
+
+                    var config = builder.Build();
+
+                    builder.AddAzureKeyVault(
+                        $"https://{config["azureKeyVault:vault"]}.vault.azure.net/",
+                        config["azureKeyVault:clientId"],
+                        config["azureKeyVault:clientSecret"]
+                    );
                 })
                 .UseStartup<Startup>();
-
-        private static string GetKeyVaultEndpoint() => Environment.GetEnvironmentVariable("KEYVAULT_ENDPOINT");
     }
 }
