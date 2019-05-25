@@ -272,6 +272,12 @@ header.masthead .intro-text .intro-heading {
   }
 }
 
+@media (max-width: 768px) {
+  header.masthead .intro-text .btn {
+    margin-bottom: 1em;
+  }
+}
+
 .service-heading {
   margin: 15px 0;
   text-transform: none;
