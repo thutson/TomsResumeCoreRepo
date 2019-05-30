@@ -12,6 +12,7 @@ const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
+var concat = require('gulp-concat');
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -27,18 +28,18 @@ const banner = ['/*!\n',
 
 // BrowserSync
 function browserSync(done) {
-    browsersync.init({
-        server: {
-            baseDir: "./"
-        },
-        port: 3000
-    });
+    //browsersync.init({
+    //    server: {
+    //        baseDir: "./"
+    //    },
+    //    port: 3000
+    //});
     done();
 }
 
 // BrowserSync reload
 function browserSyncReload(done) {
-    browsersync.reload();
+    //browsersync.reload();
     done();
 }
 
@@ -78,7 +79,7 @@ function css() {
         .pipe(plumber())
         .pipe(sass({
             outputStyle: "expanded",
-            includePaths: "./node_modules",
+            includePaths: "./node_modules"
         }))
         .on("error", sass.logError)
         .pipe(autoprefixer({
@@ -98,12 +99,25 @@ function css() {
 }
 
 // JS task
-function js() {
+function minJs() {
     return gulp
         .src([
             './Scripts/*.js'
         ])
         .pipe(uglify())
+        .pipe(header(banner, {
+            pkg: pkg
+        }))
+        .pipe(concat('site.min.js'))
+        .pipe(gulp.dest('./wwwroot/js'))
+        .pipe(browsersync.stream());
+}
+
+function fullJs() {
+    return gulp
+        .src([
+            './Scripts/*.js'
+        ])
         .pipe(header(banner, {
             pkg: pkg
         }))
@@ -114,12 +128,13 @@ function js() {
 // Watch files
 function watchFiles() {
     gulp.watch("./Sass/**/*", css);
-    gulp.watch("./Scripts/**/*", js);
-    //gulp.watch("./**/*.html", browserSyncReload);
+    gulp.watch("./Scripts/**/*.js", js);
+    gulp.watch("./**/*.html", browserSyncReload);
 }
 
 // Define complex tasks
 const vendor = gulp.series(clean, modules);
+const js = gulp.parallel(minJs, fullJs);
 const build = gulp.series(vendor, gulp.parallel(css, js));
 const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 

@@ -6,14 +6,6 @@
     <UserSecretsId>30fbdcee-2168-42a0-8039-c71f71b37a06</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="bundleconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="bundleconfig.json" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -34,6 +26,11 @@
     <ProjectReference Include="..\TomsResumeCore.Data\TomsResumeCore.Data.csproj" />
     <ProjectReference Include="..\TomsResumeCore.DomainModels\TomsResumeCore.DomainModels.csproj" />
     <ProjectReference Include="..\TomsResumeCore.Service\TomsResumeCore.Service.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
