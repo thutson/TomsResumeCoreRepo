@@ -2,7 +2,6 @@
 
 // Load plugins
 const autoprefixer = require("gulp-autoprefixer");
-const browsersync = require("browser-sync").create();
 const cleanCSS = require("gulp-clean-css");
 const del = require("del");
 const gulp = require("gulp");
@@ -12,7 +11,7 @@ const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
-var concat = require('gulp-concat');
+const concat = require('gulp-concat');
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -25,23 +24,6 @@ const banner = ['/*!\n',
     ' */\n',
     '\n'
 ].join('');
-
-// BrowserSync
-function browserSync(done) {
-    //browsersync.init({
-    //    server: {
-    //        baseDir: "./"
-    //    },
-    //    port: 3000
-    //});
-    done();
-}
-
-// BrowserSync reload
-function browserSyncReload(done) {
-    //browsersync.reload();
-    done();
-}
 
 // Clean vendor
 function clean() {
@@ -94,8 +76,7 @@ function css() {
             suffix: ".min"
         }))
         .pipe(cleanCSS())
-        .pipe(gulp.dest("./wwwroot/css"))
-        .pipe(browsersync.stream());
+        .pipe(gulp.dest("./wwwroot/css"));
 }
 
 // JS task
@@ -109,8 +90,7 @@ function minJs() {
             pkg: pkg
         }))
         .pipe(concat('site.min.js'))
-        .pipe(gulp.dest('./wwwroot/js'))
-        .pipe(browsersync.stream());
+        .pipe(gulp.dest('./wwwroot/js'));
 }
 
 function fullJs() {
@@ -121,22 +101,20 @@ function fullJs() {
         .pipe(header(banner, {
             pkg: pkg
         }))
-        .pipe(gulp.dest('./wwwroot/js'))
-        .pipe(browsersync.stream());
+        .pipe(gulp.dest('./wwwroot/js'));t
 }
 
 // Watch files
 function watchFiles() {
     gulp.watch("./Sass/**/*", css);
     gulp.watch("./Scripts/**/*.js", js);
-    gulp.watch("./**/*.html", browserSyncReload);
 }
 
 // Define complex tasks
 const vendor = gulp.series(clean, modules);
 const js = gulp.parallel(minJs, fullJs);
 const build = gulp.series(vendor, gulp.parallel(css, js));
-const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
+const watch = gulp.series(build, watchFiles);
 
 // Export tasks
 exports.css = css;
