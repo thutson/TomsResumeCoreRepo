@@ -101,7 +101,7 @@ function fullJs() {
         .pipe(header(banner, {
             pkg: pkg
         }))
-        .pipe(gulp.dest('./wwwroot/js'));t
+        .pipe(gulp.dest('./wwwroot/js'));
 }
 
 // Watch files

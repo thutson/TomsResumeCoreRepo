@@ -16,7 +16,7 @@
                     <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 class="service-heading">Software Development</h4>
-                <p class="text-muted">I have been developing applications professionally for over @(DateTime.Now.Year - 2008) years. I have experience with web and mobile development and have worked mainly in the medical and education fields.</p>
+                <p class="text-muted">I have been developing applications professionally for over @(DateTime.Now.Year - Convert.ToInt16(_config["ImportantDates:YearIStartedProfessionallyCoding"])) years. I have experience with web and mobile development and have worked mainly in the medical and education fields.</p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
@@ -163,7 +163,7 @@
                     I was born and raised in coastal Georgia just outside of Savannah. From a young age I was interested in fixing and tinkering with things. Although I didn't appreciate it at the time, we never had cable TV in the house. This lead to spending more time tinkering with the family computer, an IBM PC clone, complete with dual 5.25" floppy drives and green monochrome adapter. I was fasciniated that I could make it do whatever I told it to. I remained a computer enthusiast for quite a while but didn't consider making a professional career out of it until taking a Java class and having the spark reignited.
                 </p>
                 <p class="text-muted">
-                    I moved to Atlanta @(DateTime.Now.Year - 2005) years ago. My wife, Lara, and I have been married for @(DateTime.Now.Year - 2007) years and we have two daughters. In my free time, I like to work in the yard when it is nice outside or maybe catch up on some reading when the weather isn't so good. I can still be found tinkering with things, whether this involves fixing a friend’s computer or taking on a big project in the renovations of our house.
+                    I moved to Atlanta @(DateTime.Now.Year - Convert.ToInt16(_config["ImportantDates:YearIMovedToAtlanta"])) years ago. My wife, Lara, and I have been married for @(DateTime.Now.Year - Convert.ToInt16(_config["ImportantDates:YearIGotMarried"])) years and we have two daughters. In my free time, I like to work in the yard when it is nice outside or maybe catch up on some reading when the weather isn't so good. I can still be found tinkering with things, whether this involves fixing a friend’s computer or taking on a big project in the renovations of our house.
                 </p>
             </div>
         </div>
@@ -177,7 +177,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">Contact</h2>
-                    <h3 class="section-subheading text-muted"><i class="fas fa-2x fa-envelope-open"></i>&nbsp; <a href="mailto:tom@tomhutson.com">tom@tomhutson.com</a> or use the form below to reach out.</h3>
+                    <h3 class="section-subheading text-muted"><i class="fas fa-2x fa-envelope-open"></i>&nbsp; <a href="mailto:@_config["ContactFormEmail"]">tom@tomhutson.com</a> or use the form below to reach out.</h3>
                 </div>
             </div>
             <div class="form-row">
