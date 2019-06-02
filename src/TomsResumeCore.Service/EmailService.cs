@@ -14,16 +14,23 @@ using TomsResumeCore.DomainModels;
 namespace TomsResumeCore.Service
 {
     public class EmailService : IEmailService
-    {
-        private readonly SmtpSettings _smtpSettings;
+    {        
         private readonly IGoogleRecaptchaService _recaptchaService;
         private readonly IConfiguration _config;
+        private readonly SmtpSettings _smtpSettings;
 
-        public EmailService(IOptions<SmtpSettings> smtpSettings, IGoogleRecaptchaService recaptchaService, IConfiguration config)
+        public EmailService(IGoogleRecaptchaService recaptchaService, IConfiguration config)
         {
-            _smtpSettings = smtpSettings.Value;
             _recaptchaService = recaptchaService;
             _config = config;
+            _smtpSettings = new SmtpSettings() {
+                Host = _config["smtp:Host"],
+                Port = Convert.ToInt32(_config["smtp:Port"]),
+                IsSSL = Convert.ToBoolean(_config["smtp:IsSSL"]),
+                SenderEmail = _config["smtp:SenderEmail"],
+                SenderName = _config["smtp:SenderName"],
+                Password = _config["GmailPassword"]
+            };
         }
 
         public async Task SendContactMessage(string name, string email, string message, string recaptcha)

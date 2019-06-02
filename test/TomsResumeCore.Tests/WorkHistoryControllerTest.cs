@@ -6,13 +6,14 @@ using TomsResumeCore.DomainModels;
 using TomsResumeCore.Data;
 using TomsResumeCore.Web.API;
 using Xunit;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TomsResumeCore.Tests
 {
     public class WorkHistoryControllerTest
     {
-        readonly WorkHistoryController _controller;
-        readonly IWorkHistoryRepo _repo;
+        private readonly WorkHistoryController _controller;
+        private readonly IWorkHistoryRepo _repo;
 
         public WorkHistoryControllerTest()
         {
@@ -28,9 +29,9 @@ namespace TomsResumeCore.Tests
         [Fact]
         public async Task GetReturnsItemsAsync()
         {
-            var result = await _controller.GetAsync();
+            var result = await _controller.Get();
 
-            Assert.IsAssignableFrom<IEnumerable<JobHeld>>(result);
+            Assert.IsAssignableFrom<ActionResult<IEnumerable<JobHeld>>>(result);
         }
     }
 }
