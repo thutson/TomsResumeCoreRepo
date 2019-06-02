@@ -21,23 +21,27 @@ namespace TomsResumeCore.Web.API
 
         // GET: api/<controller>
         [HttpGet]
-        public async Task<IEnumerable<JobHeld>> GetAsync()
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<JobHeld>>> Get()
         {
             var jobs = await _workHistoryRepo.GetWorkHistoryAsync();
 
-            return jobs
-                .OrderBy(x => x.JobOrder)
-                .Select(x => new JobHeld
-                {
-                    Employer = x.Employer,
-                    DateRange = x.DateRange,
-                    Position = x.Position,
-                    Location = x.Location,
-                    JobOrder = x.JobOrder,
-                    LogoUrl = x.LogoUrl,
-                    BulletPoints = x.BulletPoints
-                        .OrderBy(y => y.Order).ToList()
-                });
+            return Ok(
+                jobs
+                    .OrderBy(x => x.JobOrder)
+                    .Select(x => new JobHeld
+                    {
+                        Employer = x.Employer,
+                        DateRange = x.DateRange,
+                        Position = x.Position,
+                        Location = x.Location,
+                        JobOrder = x.JobOrder,
+                        LogoUrl = x.LogoUrl,
+                        BulletPoints = x.BulletPoints
+                            .OrderBy(y => y.Order).ToList()
+                    })
+                );
         }
 
         // GET api/<controller>/5

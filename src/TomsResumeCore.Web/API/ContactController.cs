@@ -37,15 +37,25 @@ namespace TomsResumeCore.Web.API
 
         // POST: api/Contact
         [HttpPost]
-        public async Task PostAsync([FromForm] ContactPayload payload)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post([FromForm] ContactPayload payload)
         {
-            if(
+            if (
                 !String.IsNullOrWhiteSpace(payload.name) &&
                 !String.IsNullOrWhiteSpace(payload.email) &&
                 !String.IsNullOrWhiteSpace(payload.message) &&
                 !String.IsNullOrWhiteSpace(payload.recaptcha)
             )
-            await _emailService.SendContactMessage(payload.name, payload.email, payload.message, payload.recaptcha);
+            {
+                await _emailService.SendContactMessage(payload.name, payload.email, payload.message, payload.recaptcha);
+
+                return NoContent();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // PUT: api/Contact/5

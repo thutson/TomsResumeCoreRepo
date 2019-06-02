@@ -31,16 +31,6 @@ namespace TomsResumeCore.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.Configure<SmtpSettings>(values =>
-            {
-                values.Host = Configuration["smtp:Host"];
-                values.Port = Convert.ToInt32(Configuration["smtp:Port"]);
-                values.IsSSL = Convert.ToBoolean(Configuration["smtp:IsSSL"]);
-                values.SenderEmail = Configuration["smtp:SenderEmail"];
-                values.SenderName = Configuration["smtp:SenderName"];
-                values.Password = Configuration["GmailPassword"];
-            });
-
             services.AddTransient<IWorkHistoryRepo, WorkHistoryRepo>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IGoogleRecaptchaService, GoogleRecaptchaService>();
