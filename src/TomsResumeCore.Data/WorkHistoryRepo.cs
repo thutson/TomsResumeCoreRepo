@@ -29,12 +29,12 @@ namespace TomsResumeCore.Data
                     if (GoogleDriveURL == null)
                         throw new ArgumentNullException("The GoogleDrive:Url param is missing from appsettings.json");
 
-                    var GoogleDriveWorkHistoryFileId = _config["GoogleDrive:WorkHistoryFileId"];
+                    var GoogleDriveFileId = _config["GoogleDrive:FileId"];
 
-                    if (GoogleDriveWorkHistoryFileId == null)
-                        throw new ArgumentNullException("The GoogleDrive:WorkHistoryFileId param is missing from appsettings.json");
+                    if (GoogleDriveFileId == null)
+                        throw new ArgumentNullException("The GoogleDrive:FileId param is missing from appsettings.json");
 
-                    var Uri = new Uri(GoogleDriveURL + GoogleDriveWorkHistoryFileId);
+                    var Uri = new Uri(GoogleDriveURL + GoogleDriveFileId);
 
                     HttpResponseMessage response = await client.GetAsync(Uri);
                     response.EnsureSuccessStatusCode();

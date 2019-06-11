@@ -27,7 +27,7 @@
         font-size: 90%;
         font-weight: 400;
         padding: 0.75em 0;
-        /*letter-spacing: 1px;*/
+        letter-spacing: 1px;
         color: $primary;
         @include heading-font;
         &.active,
@@ -58,7 +58,7 @@
         .navbar-nav {
             .nav-item {
                 .nav-link {
-                    padding: 1.1em .5em !important;
+                    padding: 1.1em 1em !important;
                 }
             }
         }
@@ -67,12 +67,10 @@
             padding-top: 0;
             padding-bottom: 0;
             background-color: $gray-700;
-
             .navbar-brand {
                 font-size: 1.25em;
                 padding: 12px 0;
                 color: $white;
-
                 &.active,
                 &:hover {
                     color: lighten($primary, 40%);
@@ -83,7 +81,6 @@
                 .nav-item {
                     .nav-link {
                         color: #FFF;
-
                         &.active,
                         &:hover {
                             color: lighten($primary, 40%);
