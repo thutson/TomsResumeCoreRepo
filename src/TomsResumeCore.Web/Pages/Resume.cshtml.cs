@@ -12,7 +12,7 @@ namespace TomsResumeCore.Web.Pages
 {
     public class ResumeModel : PageModel
     {
-        private protected IResumeRepo _resumeRepo;
+        private readonly IResumeRepo _resumeRepo;
 
         public ResumeModel(IResumeRepo resumeRepo)
         {
