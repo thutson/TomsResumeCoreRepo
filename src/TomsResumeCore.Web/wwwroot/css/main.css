@@ -1,5 +1,5 @@
 /*!
- * Toms Resume Website v1.0.4 (https://tomhutson.com)
+ * Toms Resume Website v1.0.5 (https://tomhutson.com)
  * Copyright 2019 Tom Hutson
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  */
@@ -194,6 +194,9 @@ img::-moz-selection {
 @media (max-width: 992px) {
   #mainNav .navbar-brand {
     color: #fff;
+  }
+  #mainNav .navbar-brand .nav-small {
+    font-size: 65%;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
     color: #fff;

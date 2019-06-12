@@ -1,42 +1,47 @@
 // Styling for the navbar
 #mainNav {
-  background-color: $gray-700;
-  .navbar-toggler {
-    font-size: 12px;
-    right: 0;
-    padding: 13px;
-    text-transform: uppercase;
-    color: $white;
-    border: 0;
-    background-color: $primary;
-    @include heading-font;
-  }
-  .navbar-brand {
-    color: $primary;
-    @include body-font;
-    &.active,
-    &:active,
-    &:focus,
-    &:hover {
-      color: lighten($primary, 40%);
-    }
-  }
-  .navbar-nav {
-    .nav-item {
-      .nav-link {
-        font-size: 90%;
-        font-weight: 400;
-        padding: 0.75em 0;
-        /*letter-spacing: 1px;*/
-        color: $primary;
+    background-color: $gray-700;
+
+    .navbar-toggler {
+        font-size: 12px;
+        right: 0;
+        padding: 13px;
+        text-transform: uppercase;
+        color: $white;
+        border: 0;
+        background-color: $primary;
         @include heading-font;
-        &.active,
-        &:hover {
-          color: lighten($primary, 40%);
-        }
-      }
     }
-  }
+
+    .navbar-brand {
+        color: $primary;
+        @include body-font;
+
+        &.active,
+        &:active,
+        &:focus,
+        &:hover {
+            color: lighten($primary, 40%);
+        }
+    }
+
+    .navbar-nav {
+        .nav-item {
+            .nav-link {
+                font-size: 90%;
+                font-weight: 400;
+                padding: 0.75em 0;
+                /*letter-spacing: 1px;*/
+                color: $primary;
+                @include heading-font;
+
+                &.active,
+                &:hover {
+                    color: lighten($primary, 40%);
+                }
+            }
+        }
+    }
 }
 @media(min-width:992px) {
     #mainNav {
@@ -98,6 +103,10 @@
     #mainNav {
         .navbar-brand {
             color: $white;
+
+            .nav-small {
+                font-size: 65%;
+            }
         }
 
         .navbar-nav {

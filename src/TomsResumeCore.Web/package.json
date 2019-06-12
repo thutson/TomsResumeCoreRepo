@@ -1,7 +1,7 @@
 {
   "title": "Toms Resume Website",
   "name": "tomsresumewebsite",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "start": "gulp watch"
   },
@@ -16,7 +16,7 @@
   "homepage": "https://tomhutson.com",
   "bugs": {
     "url": "https://github.com/thutson/TomsResumeCore/issues",
-    "email": "feedback@startbootstrap.com"
+    "email": "tom@tomhutson.com"
   },
   "license": "MIT",
   "author": "Tom Hutson",
