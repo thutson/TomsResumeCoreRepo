@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TomsResumeCore.Data;
+using TomsResumeCore.Data.Interfaces;
+using TomsResumeCore.DomainModels;
 using TomsResumeCore.Service;
 
 namespace TomsResumeCore.Web
@@ -30,6 +33,7 @@ namespace TomsResumeCore.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IWorkHistoryRepo, WorkHistoryRepo>();
+            services.AddTransient<IResumeRepo, ResumeRepo>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IGoogleRecaptchaService, GoogleRecaptchaService>();
             services.AddTransient<IVisitService, VisitService>();
@@ -50,7 +54,14 @@ namespace TomsResumeCore.Web
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+            provider.Mappings[".webmanifest"] = "application/manifest+json";
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                ContentTypeProvider = provider
+            });
             //app.UseCookiePolicy();
 
             app.UseMvc();
