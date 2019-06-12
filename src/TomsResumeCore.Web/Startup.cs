@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using TomsResumeCore.Data;
 using TomsResumeCore.Data.Interfaces;
-using TomsResumeCore.DomainModels;
 using TomsResumeCore.Service;
 
 namespace TomsResumeCore.Web
@@ -37,6 +35,7 @@ namespace TomsResumeCore.Web
             services.AddTransient<IResumeRepo, ResumeRepo>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IGoogleRecaptchaService, GoogleRecaptchaService>();
+            services.AddTransient<IVisitService, VisitService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
