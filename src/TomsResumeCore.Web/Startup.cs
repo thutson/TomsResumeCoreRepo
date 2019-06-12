@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TomsResumeCore.Data;
 using TomsResumeCore.Data.Interfaces;
-using TomsResumeCore.DomainModels;
 using TomsResumeCore.Service;
 
 namespace TomsResumeCore.Web
