@@ -202,3 +202,14 @@
         </form>
     </div>
 </section>
+
+@inject Service.IVisitService _visitService;
+@{
+    var IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+    var UserAgent = Request.Headers["User-Agent"].ToString();
+
+    if (!String.IsNullOrWhiteSpace(IpAddress) || !String.IsNullOrWhiteSpace(UserAgent))
+    {
+        await _visitService.SaveVisit(IpAddress, UserAgent);
+    }
+}
