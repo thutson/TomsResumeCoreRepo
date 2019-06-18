@@ -7,6 +7,6 @@ namespace TomsResumeCore.Service
 {
     public interface IVisitService
     {
-        Task SaveVisit(string IpAddress, string UserAgent);
+        Task SaveVisit(string IpAddress, string Page, string UserAgent);
     }
 }

@@ -17,7 +17,7 @@ namespace TomsResumeCore.Service
             _config = config;
         }
 
-        public async Task SaveVisit(string IpAddress, string UserAgent)
+        public async Task SaveVisit(string IpAddress, string Page, string UserAgent)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -31,6 +31,7 @@ namespace TomsResumeCore.Service
                     var jsonObject = new
                     {
                         IpAddress = IpAddress,
+                        Page = Page,
                         UserAgent = UserAgent
                     };
 
