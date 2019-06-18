@@ -202,7 +202,7 @@
         </form>
     </div>
 </section>
-<environment include=""="Development">
+<environment exclude="Development">
     @inject Service.IVisitService _visitService;
     @{
         var IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
@@ -210,7 +210,7 @@
 
         if (!String.IsNullOrWhiteSpace(IpAddress) || !String.IsNullOrWhiteSpace(UserAgent))
         {
-            await _visitService.SaveVisit(IpAddress, UserAgent);
+            await _visitService.SaveVisit(IpAddress, "Index", UserAgent);
         }
     }
 </environment>

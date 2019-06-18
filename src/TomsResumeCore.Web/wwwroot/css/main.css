@@ -237,6 +237,11 @@ header.masthead .intro-text .intro-body {
   text-align: left;
 }
 
+header.masthead .intro-text .intro-body a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
 header.masthead .intro-text .intro-heading {
   font-size: 50px;
   font-weight: 700;

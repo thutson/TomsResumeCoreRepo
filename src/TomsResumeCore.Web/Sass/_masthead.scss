@@ -29,6 +29,11 @@ header.masthead {
             border-radius: 6px;
             padding: 1em;
             text-align: left;
+
+            a {
+                color: $link-color;
+                text-decoration: underline;
+            }
         }
 
         .intro-heading {
