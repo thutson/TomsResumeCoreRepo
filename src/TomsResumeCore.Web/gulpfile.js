@@ -12,6 +12,7 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const concat = require('gulp-concat');
+const babel = require('gulp-babel');
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -35,9 +36,12 @@ function modules() {
     // Bootstrap
     var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
         .pipe(gulp.dest('./wwwroot/lib/bootstrap'));
-    // Font Awesome
-    var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
-        .pipe(gulp.dest('./wwwroot/lib'));
+    // Font Awesome CSS
+    var fontAwesomeCSS = gulp.src('./node_modules/@fortawesome/fontawesome-free/css/**/*')
+        .pipe(gulp.dest('./wwwroot/lib/fontawesome-free/css'));
+    // Font Awesome Webfonts
+    var fontAwesomeWebfonts = gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*')
+        .pipe(gulp.dest('./wwwroot/lib/fontawesome-free/webfonts'));
     // jQuery Easing
     var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
         .pipe(gulp.dest('./wwwroot/lib/jquery-easing'));
@@ -51,7 +55,7 @@ function modules() {
     var jqueryValidation = gulp.src('./node_modules/jquery-validation/dist/**/*')
         .pipe(gulp.dest('./wwwroot/lib/jquery-validation'));
 
-    return merge(bootstrap, fontAwesome, jquery, jqueryEasing, jqueryValidation);
+    return merge(bootstrap, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing, jqueryValidation);
 }
 
 // CSS task
@@ -85,6 +89,9 @@ function minJs() {
         .src([
             './Scripts/*.js'
         ])
+        .pipe(babel({
+            presets: ["@babel/preset-env"]
+        }))
         .pipe(uglify())
         .pipe(header(banner, {
             pkg: pkg
@@ -98,6 +105,9 @@ function fullJs() {
         .src([
             './Scripts/*.js'
         ])
+        .pipe(babel({
+            presets: ["@babel/preset-env"]
+        }))
         .pipe(header(banner, {
             pkg: pkg
         }))

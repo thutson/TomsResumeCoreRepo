@@ -1,10 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>30fbdcee-2168-42a0-8039-c71f71b37a06</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="vendor\**" />
+    <Content Remove="vendor\**" />
+    <EmbeddedResource Remove="vendor\**" />
+    <None Remove="vendor\**" />
+  </ItemGroup>
 
 
   <ItemGroup>
