@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using TomsResumeCore.Data;
 using TomsResumeCore.Data.Interfaces;
 using TomsResumeCore.Service;
@@ -29,7 +30,10 @@ namespace TomsResumeCore.Web
                 //options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
+            services.AddRazorPages();
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddTransient<IWorkHistoryRepo, WorkHistoryRepo>();
             services.AddTransient<IResumeRepo, ResumeRepo>();
@@ -39,7 +43,7 @@ namespace TomsResumeCore.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -52,7 +56,7 @@ namespace TomsResumeCore.Web
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".webmanifest"] = "application/manifest+json";
@@ -61,9 +65,12 @@ namespace TomsResumeCore.Web
             {
                 ContentTypeProvider = provider
             });
-            //app.UseCookiePolicy();
-
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
