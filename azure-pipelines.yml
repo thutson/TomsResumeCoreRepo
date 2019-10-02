@@ -28,12 +28,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: UseDotNet@2
-  displayName: 'Use dotnet sdk 3.x'
-  inputs:
-    version: 3.x
-    includePreviewVersions: true
-
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
