@@ -29,7 +29,7 @@ namespace TomsResumeCore.Web.API
 
             return Ok(
                 jobs
-                    .OrderBy(x => x.JobOrder)
+                    .OrderByDescending(x => x.JobOrder)
                     .Select(x => new JobHeld
                     {
                         Employer = x.Employer,
