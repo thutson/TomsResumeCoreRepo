@@ -7,6 +7,9 @@ using TomsResumeCore.Data;
 using TomsResumeCore.Web.API;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using TomsResumeCore.Service;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace TomsResumeCore.Tests
 {
@@ -14,6 +17,8 @@ namespace TomsResumeCore.Tests
     {
         private readonly WorkHistoryController _controller;
         private readonly IWorkHistoryRepo _repo;
+        private readonly IVisitService _visitService;
+        private readonly IHostEnvironment _hostEnv;
 
         public WorkHistoryControllerTest()
         {
@@ -23,7 +28,10 @@ namespace TomsResumeCore.Tests
                 .Build();
 
             _repo = new WorkHistoryRepo(configuration);
-            _controller = new WorkHistoryController(_repo);
+            _visitService = new VisitService(configuration);
+            _hostEnv = new HostingEnvironment { EnvironmentName = Environments.Development };
+
+            _controller = new WorkHistoryController(_repo, _visitService, _hostEnv);
         }
 
         [Fact]
