@@ -12,7 +12,7 @@ A few things used in this site:
 - Unit tests using xUnit.
 - Google ReCapthcha v2 is used to verify contact form submission.
 - CI and hosting is done on Azure.
-- SSL cert from <a href="https://letsencrypt.org/" target="blank">Let's Encrypt</a>
+- SSL cert from <a href="https://www.cloudflare.com/" target="blank">Cloudflare</a>
 
 ## Credits
 - Theme is modified from the <a href="https://github.com/BlackrockDigital/startbootstrap-agency" target="blank">Agency theme found at startbootstrap</a>.
