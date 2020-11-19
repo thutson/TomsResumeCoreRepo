@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TomsResumeCore.DomainModels;
 using TomsResumeCore.Data;
+using TomsResumeCore.Service;
+using Microsoft.Extensions.Hosting;
 
 namespace TomsResumeCore.Web.API
 {
@@ -14,9 +16,14 @@ namespace TomsResumeCore.Web.API
     public class WorkHistoryController : ControllerBase
     {
         private readonly IWorkHistoryRepo _workHistoryRepo;
-        public WorkHistoryController(IWorkHistoryRepo workHistoryRepo)
+        private readonly IVisitService _visitService;
+        private readonly IHostEnvironment _hostEnv;
+
+        public WorkHistoryController(IWorkHistoryRepo workHistoryRepo, IVisitService visitService, IHostEnvironment hostEnv)
         {
             _workHistoryRepo = workHistoryRepo;
+            _visitService = visitService;
+            _hostEnv = hostEnv;
         }
 
         // GET: api/<controller>
@@ -25,6 +32,17 @@ namespace TomsResumeCore.Web.API
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IEnumerable<JobHeld>>> Get()
         {
+            if (_hostEnv.EnvironmentName != "Development")
+            {
+                var IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                var UserAgent = Request.Headers["User-Agent"].ToString();
+
+                if (!String.IsNullOrWhiteSpace(IpAddress) || !String.IsNullOrWhiteSpace(UserAgent))
+                {
+                    await _visitService.SaveVisit(IpAddress, "Index", UserAgent);
+                }
+            }
+
             var jobs = await _workHistoryRepo.GetWorkHistoryAsync();
 
             return Ok(
